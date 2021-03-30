@@ -19,14 +19,15 @@ namespace SettingsApplication.Views
 #endif
         }
 
-        public void ChooseFileOnClickCommand(object sender, RoutedEventArgs e)
+        public async void ChooseFileOnClickCommand(object sender, RoutedEventArgs e)
         {
+            /*
             var process = new Process()
             {
                 StartInfo = new ProcessStartInfo
                 {
                     FileName = "/usr/bin/zenity",
-                    Arguments = "--file-selection --tile \"Choose the file\" --file-filter = '*. cs * .sh * .txt'",
+                    Arguments = "--file-selection --title \"Choose the file\" --file-filter=\"*.cs *.sh *.txt\"",
                     RedirectStandardOutput = true,
                     UseShellExecute = false,
                     CreateNoWindow = true,
@@ -34,12 +35,18 @@ namespace SettingsApplication.Views
             };
 
             process.Start();
-            string result = process.StandardOutput.ReadToEnd();
+            string result = process.StandardOutput.ReadToEnd().Replace(Environment.NewLine, "");
             process.WaitForExit();
 
             chooseFileBox.Text = result;
+            */
 
-            Console.WriteLine(result);
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filters.Add(new FileDialogFilter() {Name = ".cs, .txt, .sh", Extensions = {"cs", "txt", "sh"}});
+
+            string[] result = await dialog.ShowAsync(this);
+
+            chooseFileBox.Text = string.Join(" ", result);
         }
 
         private void InitializeComponent()
