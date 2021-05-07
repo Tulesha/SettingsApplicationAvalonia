@@ -1,20 +1,14 @@
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
-using System;
-using System.Diagnostics;
 
 namespace SettingsApplication.Views
 {
-    public class MainWindow : Window
+    public class SendFileView : UserControl
     {
-        public MainWindow()
+        public SendFileView()
         {
             InitializeComponent();
-#if DEBUG
-            this.AttachDevTools();
-#endif
         }
 
         private void InitializeComponent()

@@ -1,0 +1,30 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="SettingsApplication.Views.SendFileView">
+  
+  
+  <TabControl>
+    <TabItem Header="Выбор файла и папки">
+      <StackPanel VerticalAlignment="Center" HorizontalAlignment="Stretch">
+        <TextBlock>Файл</TextBlock>
+        <TextBox Watermark="Напишите путь до файла" Text="{Binding FileName}"></TextBox>
+        <Button
+          Content="Выбор файла" 
+          Command="{Binding FileCommand}"
+          CommandParameter="{Binding $parent[Window]}"/>
+        
+        
+        <TextBlock>Папка</TextBlock>
+        <TextBox Watermark="Напишите путь до папки" Text="{Binding FolderName}" ></TextBox>
+        <Button
+          Content="Выбор папки"
+          Command="{Binding FolderCommand}"
+          CommandParameter="{Binding $parent[Window]}"/>
+      </StackPanel>
+    </TabItem>
+  </TabControl>
+  
+</UserControl>

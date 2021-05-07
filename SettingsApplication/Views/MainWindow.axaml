@@ -7,22 +7,8 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="SettingsApplication.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
-        Title="SettingsApplication">
-
-  <TabControl>
-    <TabItem Header="Выбор файла и папки">
-      <StackPanel VerticalAlignment="Center" HorizontalAlignment="Stretch">
-        <TextBlock>Файл</TextBlock>
-        <TextBox Watermark="Напишите путь до файла" Name="pathToFileBox"></TextBox>
-        <Button
-          Click="ChooseFileOnClickCommand"
-          Content="Выбор файла" IsEnabled="True"/>
-        <TextBlock>Папка</TextBlock>
-        <TextBox Watermark="Напишите путь до папки" Name="pathToFolderBox" ></TextBox>
-        <Button
-          Click="ChooseFolderOnClickCommand"
-          Content="Выбор папки" IsEnabled="True"/>
-      </StackPanel>
-    </TabItem>
-  </TabControl>
+        Title="SettingsApplication"
+        Content="{Binding Content}">
+        
+  
 </Window>
