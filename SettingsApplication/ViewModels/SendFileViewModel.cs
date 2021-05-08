@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ReactiveUI;
-using System.Reactive;
 using System.Windows.Input;
 using Avalonia.Controls;
-using Avalonia;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 namespace SettingsApplication.ViewModels
 {
@@ -33,10 +29,40 @@ namespace SettingsApplication.ViewModels
                 if (result.Length != 0)
                     FolderName = result;
             });
+
+            GoToUrl = ReactiveCommand.Create((string url) =>
+            {
+                try
+                {
+                    Process.Start(url);
+                }
+                catch
+                {
+                    if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                    {
+                        url = url.Replace("&", "^&");
+                        Process.Start(new ProcessStartInfo("cmd", $"/c start {url}") { CreateNoWindow = true});
+                    }
+                    else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                    {
+                        Process.Start("xdg-open", url);
+                    }
+                    else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                    {
+                        Process.Start("open", url);
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+            });
         }
 
         public ICommand FileCommand { get; }
         public ICommand FolderCommand { get; }
+
+        public ICommand GoToUrl { get; }
 
         private string fileName;
         private string folderName;

@@ -23,6 +23,7 @@
           Content="Выбор папки"
           Command="{Binding FolderCommand}"
           CommandParameter="{Binding $parent[Window]}"/>
+        <Button Classes="LinkButton" Command="{Binding GoToUrl}" CommandParameter="https://www.google.com/">Google.com</Button>
       </StackPanel>
     </TabItem>
   </TabControl>

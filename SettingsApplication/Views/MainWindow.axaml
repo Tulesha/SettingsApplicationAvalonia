@@ -9,6 +9,10 @@
         Icon="/Assets/avalonia-logo.ico"
         Title="SettingsApplication"
         Content="{Binding Content}">
+  
+  <Window.Styles>
+    <StyleInclude Source="/Styles/Styles.axaml"/>
+  </Window.Styles>
         
   
 </Window>
